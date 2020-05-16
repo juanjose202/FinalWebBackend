@@ -13,6 +13,9 @@ const vs = "/apiFinal/v1/"
 //importar las rutas con los endpoints especificos
 
 
+const rutasMotos = require('./routes/motos')
+app.use(vs,rutasMotos)
+
 //puerto
 const port = 3002
 

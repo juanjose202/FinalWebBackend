@@ -27,6 +27,10 @@ class ServicioPG{
         return respuesta;
     }
 
+    /**
+     * Metodo que ejecuta la sentencia sql que se le pasa por parametro con los valores proporcionados 
+     * @param {*} sql 
+     */
     async ejecutarSQL(sql,valores){
         let respuesta = await this.pool.query(sql,valores)
         return respuesta;
