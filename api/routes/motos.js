@@ -37,11 +37,5 @@ router.post('/motos', (req, res) => {
 
 });
 
-
-
-
-
-
-
 module.exports = router;
 
