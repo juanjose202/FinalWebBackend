@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {validarInformacion,guardarInfoMoto,obtenerInfoMoto} = require('../controllers/motos')
+const {validarInformacion,guardarInfoMoto,obtenerInfoMoto,obtenerInfoMotoEspecifica,eliminarMoto,actualizarMoto} = require('../controllers/motos')
 
 
 router.get('/',(req,res) => {
@@ -14,6 +14,22 @@ router.get('/motos',(req,res) => {
         res.send(error)
     })
 })
+
+router.get('/motos/:placa', (req,res)=>{
+    let placa= req.params.placa 
+    obtenerInfoMotoEspecifica(placa).then(respuesta=>{
+        res.send(respuesta.rows)
+    }).catch(error=>{
+        res.send(error)
+        console.log(error);
+        
+    })
+
+})
+
+
+
+
 
 //guardar una moto en la base de datos
 router.post('/motos', (req, res) => {
@@ -36,6 +52,28 @@ router.post('/motos', (req, res) => {
     }
 
 });
+
+// eliminar una moto de la base de datos
+
+router.delete('/motos/:placa',eliminarMoto)
+
+
+
+//actualizar informacion de una moto
+router.put('/motos/:placa',(req,res)=>{
+    let placa =req.params.placa;
+    let info  = req.body;
+
+    actualizarMoto(placa,info).then(respuesta=>{
+        res.json(`moto con placa  ${placa} actualizada exitosamente`);
+        
+
+        
+    }).catch(error=>{
+        console.log(error)
+        res.send(error)
+    })
+})
 
 module.exports = router;
 
