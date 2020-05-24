@@ -20,6 +20,9 @@ app.use(vs,rutasMotos)
 const rutasUsuarios= require('./routes/usuarios')
 app.use(vs,rutasUsuarios)
 
+const rutasMantenimientos= require('./routes/mantenimientos')
+app.use(vs,rutasMantenimientos)
+
 //puerto
 const port = 3002
 
