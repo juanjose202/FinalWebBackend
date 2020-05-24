@@ -7,6 +7,7 @@ router.get('/',(req,res) => {
     res.send("Bienvenido a la api del taller de motos")
 })
 
+//endpoint para obtener todas las motos
 router.get('/motos',(req,res) => {
     obtenerInfoMoto().then(respuesta => {
         res.send(respuesta.rows)
@@ -15,6 +16,7 @@ router.get('/motos',(req,res) => {
     })
 })
 
+//endpoint para obtener la moto de una determinada placa
 router.get('/motos/:placa', (req,res)=>{
     let placa= req.params.placa 
     obtenerInfoMotoEspecifica(placa).then(respuesta=>{
@@ -27,11 +29,7 @@ router.get('/motos/:placa', (req,res)=>{
 
 })
 
-
-
-
-
-//guardar una moto en la base de datos
+//endpoint para guardar una moto en la base de datos
 router.post('/motos', (req, res) => {
 
     try {
@@ -53,13 +51,13 @@ router.post('/motos', (req, res) => {
 
 });
 
-// eliminar una moto de la base de datos
+//endpoint para eliminar una moto de la base de datos
 
 router.delete('/motos/:placa',eliminarMoto)
 
 
 
-//actualizar informacion de una moto
+//endpint para actualizar informacion de una moto
 router.put('/motos/:placa',(req,res)=>{
     let placa =req.params.placa;
     let info  = req.body;

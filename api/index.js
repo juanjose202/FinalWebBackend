@@ -16,6 +16,10 @@ const vs = "/apiFinal/v1/"
 const rutasMotos = require('./routes/motos')
 app.use(vs,rutasMotos)
 
+
+const rutasUsuarios= require('./routes/usuarios')
+app.use(vs,rutasUsuarios)
+
 //puerto
 const port = 3002
 

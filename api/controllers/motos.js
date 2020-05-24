@@ -50,6 +50,7 @@ let obtenerInfoMotoEspecifica = async (placa) => {
 }
 
 
+// metodo para eliminar una moto en la base de datos
 let eliminarMoto = async (req,res) => {
     let placa = req.params.placa;
     let servicio = new ServicioPG();
@@ -60,7 +61,7 @@ let eliminarMoto = async (req,res) => {
     return respuesta;
 }
 
-
+// metodo para actualizar una moto en la base de datos
 let actualizarMoto = async (placa,info) => {
 
     let servicio = new ServicioPG();
