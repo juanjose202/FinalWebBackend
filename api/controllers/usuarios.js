@@ -74,8 +74,8 @@ let eliminarUsuario = async (req,res) => {
 let actualizarUsuario = async (documento,info) => {
 
     let servicio = new ServicioPG();
-    let valores = [documento,info.tipo_documento,info.nombre,info.apellidos,info.celular,info.correo,info.rol,info.clave]
-    let sql = `UPDATE usuarios set tipo_documento=$2,nombre=$3,apellidos=$4,celular=$5,correo=$6,rol=$7,clave=md5($8) where documento = $1`
+    let valores = [documento,info.tipo_documento,info.nombre,info.apellidos,info.celular,info.correo,info.rol]
+    let sql = `UPDATE usuarios set tipo_documento=$2,nombre=$3,apellidos=$4,celular=$5,correo=$6,rol=$7 where documento = $1`
     let respuesta = await servicio.ejecutarSQL(sql,valores);
     return respuesta;
 

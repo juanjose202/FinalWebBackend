@@ -47,7 +47,7 @@ router.post('/usuarios', (req, res) => {
             res.send({ ok: true, mensaje: "La informacion se guardo correctamente", info: infoUsuario })
 
         }).catch(error => {
-            console.log("La informacion NO se guardo correctamente", error)
+            console.log({ ok: true, mensaje: "La informacion No se guardo correctamente, es probable que este usuario ya exista", info: infoUsuario }, error)
             res.send(error)
         })
 

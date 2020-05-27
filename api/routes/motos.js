@@ -18,7 +18,7 @@ router.get('/motos',(req,res) => {
 
 
 //endpoint para obtener todas las motos en estado malo
-router.get('/motosEstado/:estado',(req,res) => {
+router.get('/motos/:estado',(req,res) => {
     let estado = req.params.estado
     obtenerInfoMotoMalo(estado).then(respuesta => {
         res.send(respuesta.rows)
@@ -51,7 +51,7 @@ router.post('/motos', (req, res) => {
             
         }).catch(error => {
             console.log("La informacion NO se guardo correctamente",error)
-            res.send(error)
+            res.send({ok:true, mensaje:"La informacion No se guardo correctamente, es probable que la placa ya exista"})
         })
 
 

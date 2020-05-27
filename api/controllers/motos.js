@@ -76,7 +76,7 @@ let eliminarMoto = async (req,res) => {
 let actualizarMoto = async (placa,info) => {
 
     let servicio = new ServicioPG();
-    let valores = [placa,info.estado,info.clase,info.marca,info.modelo,info.color,info.cilindraje,info.id_propietario,info.nro_soat,info.vencimiento_soat,info.nro_tecnomecanica,info.vencimiento_tecnomecanica ]
+    let valores = [placa,"MALO",info.clase,info.marca,info.modelo,info.color,info.cilindraje,info.id_propietario,info.nro_soat,info.vencimiento_soat,info.nro_tecnomecanica,info.vencimiento_tecnomecanica ]
     let sql = `UPDATE motos set estado=$2,clase=$3,marca=$4,modelo=$5,color=$6,cilindraje=$7,id_propietario=$8,nro_soat=$9,vencimiento_soat=$10,nro_tecnomecanica=$11,vencimiento_tecnomecanica=$12 where placa = $1`
     let respuesta = await servicio.ejecutarSQL(sql,valores);
     
