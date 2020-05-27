@@ -50,6 +50,17 @@ let obtenerInfoMotoEspecifica = async (placa) => {
 }
 
 
+//metodo que obtiene una moto especifica  desde base de datos
+let obtenerInfoMotoMalo = async (estado) => {
+
+    let servicio = new ServicioPG();
+    let sql = `select * from motos where estado = $1`;
+    let valores = [estado];
+    let respuesta = await servicio.ejecutarSQL(sql, valores);
+    return respuesta
+}
+
+
 // metodo para eliminar una moto en la base de datos
 let eliminarMoto = async (req,res) => {
     let placa = req.params.placa;
@@ -78,5 +89,5 @@ let actualizarMoto = async (placa,info) => {
 
 
 
-module.exports = { validarInformacion, guardarInfoMoto, obtenerInfoMoto, obtenerInfoMotoEspecifica , eliminarMoto, actualizarMoto};
+module.exports = { validarInformacion, guardarInfoMoto, obtenerInfoMoto, obtenerInfoMotoEspecifica , eliminarMoto, actualizarMoto ,obtenerInfoMotoMalo};
 
