@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {validarInformacion,guardarInfoMoto,obtenerInfoMoto,obtenerInfoMotoEspecifica,eliminarMoto,actualizarMoto,obtenerInfoMotoMalo} = require('../controllers/motos')
+const {validarInformacion,guardarInfoMoto,obtenerInfoMoto,obtenerInfoMotoEspecifica,eliminarMoto,actualizarMoto,obtenerInfoMotoMalo,actualizarEstadoMoto} = require('../controllers/motos')
 
 
 router.get('/',(req,res) => {
@@ -18,7 +18,7 @@ router.get('/motos',(req,res) => {
 
 
 //endpoint para obtener todas las motos en estado malo
-router.get('/motos/:estado',(req,res) => {
+router.get('/motosE/:estado',(req,res) => {
     let estado = req.params.estado
     obtenerInfoMotoMalo(estado).then(respuesta => {
         res.send(respuesta.rows)
@@ -28,8 +28,8 @@ router.get('/motos/:estado',(req,res) => {
 })
 
 //endpoint para obtener la moto de una determinada placa
-router.get('/motos/:placa', (req,res)=>{
-    let placa= req.params.placa 
+router.get('/motosP/:placa', (req,res)=>{
+    let placa= req.params.placa
     obtenerInfoMotoEspecifica(placa).then(respuesta=>{
         res.send(respuesta.rows)
     }).catch(error=>{
@@ -83,6 +83,25 @@ router.put('/motos/:placa',(req,res)=>{
         res.send(error)
     })
 })
+
+
+//endpint para actualizar el estado  de una moto
+router.put('/motosEstado/:placa/:estado',(req,res)=>{
+    let placa =req.params.placa;
+    let estado  = req.params.estado;
+
+    actualizarEstadoMoto(placa,estado).then(respuesta=>{
+        res.json(`estado de la moto con placa  ${placa} actualizada exitosamente`);
+        
+
+        
+    }).catch(error=>{
+        console.log(error)
+        res.send(error)
+    })
+})
+
+
 
 module.exports = router;
 

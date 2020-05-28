@@ -56,6 +56,13 @@ let obtenerInfoMantenimientosMecanico = async (id_mecanico)=>{
 
 }
 
+let obtenerInfoMantenimientosSinTrabajos= async()=>{
+    let servicio=new ServicioPG();
+    let sql = `select * from mantenimientos where trabajos_realizados= 'Ninguno'`
+    let respuesta = await servicio.ejecutarSQL(sql)
+    return respuesta;
+}
+
 
 // metodo para eliminar un mantenimiento en la base de datos
 let eliminarMantenimiento = async (req,res) => {
@@ -83,4 +90,4 @@ let actualizarMantenimiento = async (id_mecanico,placa,info) => {
 
 
 
-module.exports={validarInformacion,guardarInfoMantenimiento,obtenerInfoMantenimientos,obtenerInfoMantenimientosMecanico,eliminarMantenimiento,actualizarMantenimiento};
+module.exports={validarInformacion,guardarInfoMantenimiento,obtenerInfoMantenimientos,obtenerInfoMantenimientosMecanico,eliminarMantenimiento,actualizarMantenimiento,obtenerInfoMantenimientosSinTrabajos};

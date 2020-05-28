@@ -1,10 +1,19 @@
 const express = require('express')
 const router = express.Router()
-const  {validarInformacion,guardarInfoMantenimiento,obtenerInfoMantenimientos,obtenerInfoMantenimientosMecanico,eliminarMantenimiento,actualizarMantenimiento}= require('../controllers/mantenimientos')
+const  {validarInformacion,guardarInfoMantenimiento,obtenerInfoMantenimientos,obtenerInfoMantenimientosMecanico,eliminarMantenimiento,actualizarMantenimiento,obtenerInfoMantenimientosSinTrabajos}= require('../controllers/mantenimientos')
 
 //endpoint para obtener todos los mantenimientos  
 router.get('/mantenimientos', (req, res) => {
     obtenerInfoMantenimientos().then(respuesta => {
+        res.send(respuesta.rows)
+    }).catch(error => {
+        res.send(error)
+    })
+})
+
+//endpoint para obtener todos los mantenimientos sin trabajos
+router.get('/mantenimientosN', (req, res) => {
+    obtenerInfoMantenimientosSinTrabajos().then(respuesta => {
         res.send(respuesta.rows)
     }).catch(error => {
         res.send(error)
