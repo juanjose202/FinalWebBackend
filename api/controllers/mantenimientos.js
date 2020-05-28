@@ -50,7 +50,7 @@ let obtenerInfoMantenimientosMecanico = async (id_mecanico)=>{
 
     let servicio=new ServicioPG();
     let valores = [id_mecanico]
-    let sql = `select * from mantenimientos where id_mecanico= $1`
+    let sql = `select * from mantenimientos where id_mecanico= $1 and trabajos_realizados= 'Ninguno'`
     let respuesta = await servicio.ejecutarSQL(sql,valores)
     return respuesta;
 
